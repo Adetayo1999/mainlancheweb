@@ -1,4 +1,27 @@
-<?php   include "../server/formhandler/handle.inc.php"; ?>
+<?php 
+  if(isset($_POST['submit'])){
+    $mailto = "tomiwaadetayo@gmail.com";
+    $from = $_POST["email"];
+    $fullName = $_POST["Fullname"];
+    $email = $_POST["email"];
+    $country = $_POST["Country"];
+    $sub = $_POST["subject"];
+    $text = $_POST["Message"];
+    $subject = "Your Message Submitted Succcessfully | WEBSITE NAME";
+    $message = "Client Name: ". $fullName . "\n\n" . "From" . "\n\n" .  $_POST[country] . "\n\n" . "Wrote the following message: ". "\n\n" . "Subject: " $_POST[sub]  . "\n\n"  . $_POST[text];
+    $message2= "Dear ". $fullName. "\n\n". "Thank You for contacting us! We will reach out to you shortly \n\n Company";
+    $headers = "From ". $from;
+    $headers2 = "From ". $mailto;
+    $result = mail($mailto, $text, $message, $headers);
+    $result2 = mail($from, $subject, $message2, $headers2);
+    if ($result) {
+        echo '<script type="text/javascript"> alert("Message was sent Succcessfully, We will contact you shortly")
+ </script>';
+    } else {
+       echo '<script type="text/javascript"> alert("Submission failed! Try again ") </script>';
+    }
+  }
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -568,7 +591,7 @@
                     <div class="bg-transparent">
                         <div class="bg-white py-8 px-4 sm:px-12 space-y-5 shadow-xl ">
                             <h1 class=" text-xl capitalize font-bold text-gray-500">get in touch with us</h1>
-                            <form action="<?php echo $_SERVER["PHP_SELF"]?>" method="POST" class="space-y-4 flex flex-col relative">
+                            <form action="" method="POST" class="space-y-4 flex flex-col relative">
         
                                 <div class="space-y-4">
                                     <div class="relative">
