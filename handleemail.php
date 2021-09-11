@@ -10,12 +10,12 @@ if(filter_has_var(INPUT_POST , 'submit')){
     $text = SanitizeInput($_POST["Message"]);
 
            if(!empty($from) && !empty($fullName) && !empty($country) && !empty($sub) && !empty($text)){
-            $subject = "Your Message Submitted Succcessfully | WEBSITE TITLE";
-            $message = "Client Name: ". $fullName . "\n\n" . "From" . "\n\n" .  $Country . "\n\n" . "Wrote the following message: ". "\n\n". $text;
-            $message2= "Dear ". $fullName. "\n\n". "Thank You for contacting us! We will reach out to you shortly \n\n Pathway Dreams Academy";
+            $subject = "Your Message Submitted Succcessfully | WEBSITE NAME";
+            $message = "Client Name: ". $fullName . "\n\n" . "From" . "\n\n" .  $country . "\n\n" . "Wrote the following message: ". "\n\n" . "Subject: " . $sub  . "\n\n"  . $text;
+            $message2= "Dear ". $fullName. "\n\n". "Thank You for contacting us! We will reach out to you shortly \n\n Company";
             $headers = "From ". $from;
             $headers2 = "From ". $mailto;
-            $result = mail($mailto, "New Message From Client", $message, $headers);
+            $result = mail($mailto, $text, $message, $headers);
             $result2 = mail($from, $subject, $message2, $headers2);
             if ($result) {
                 echo '<script type="text/javascript"> alert("Message was sent Succcessfully, We will contact you shortly")
